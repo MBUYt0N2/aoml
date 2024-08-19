@@ -19,7 +19,6 @@ class DecisionTreeClassifier:
         pass
 
     def _gini(self, y):
-        # Implement this function to compute the Gini impurity
         pass
 
     def _build_tree(self, X, y, depth):
@@ -34,6 +33,7 @@ num_samples = 100
 X_train = np.random.rand(num_samples, 2)
 y_train = (np.random.rand(num_samples) > 0.5).astype(int)
 X_test = np.array([[0.5, 0.5]])  # Single test instance
-tree.fit(X_train, y_train)
-predictions = tree.predict(X_test)
-print(f"Predicted class label for X_test: {predictions[0]}")
+# tree.fit(X_train, y_train)
+# predictions = tree.predict(X_test)
+print(X_train, X_test, y_train)
+# print(f"Predicted class label for X_test: {predictions[0]}")
