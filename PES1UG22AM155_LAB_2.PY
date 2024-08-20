@@ -41,13 +41,7 @@ class DecisionTreeClassifier:
                     split = (i, j)
         return split
     
-    def _gini(self, split, y):
-        total = len(split)
-        if total == 0:
-            return 0
-        return 1 - ((np.sum(y[split == 1]) / total) ** 2) - ((np.sum(y[split == 0]) / total) ** 2)
-
-    def _gini1(self, indices, y):
+    def _gini(self, indices, y):
         total = len(indices)
         if total == 0:
             return 0
