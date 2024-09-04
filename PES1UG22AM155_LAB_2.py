@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Node:
     def __init__(self, feature, value):
         self.feature = feature
@@ -7,6 +8,7 @@ class Node:
         self.left = None
         self.right = None
         self.leaf = None
+
 
 class DecisionTreeClassifier:
     def __init__(self, max_depth=None):
@@ -27,20 +29,21 @@ class DecisionTreeClassifier:
                     node = node.right
             res.append(node.leaf)
         return res
-        
 
     def _best_split(self, X, y):
-        best = float('inf')
+        best = float("inf")
         split = None
         for i in range(X.shape[1]):
             x = X[:, i]
             for j in x:
-                g = self._gini([k for k in range(len(x)) if x[k] > j], y) + self._gini([k for k in range(len(x)) if x[k] < j], y)
+                g = self._gini([k for k in range(len(x)) if x[k] > j], y) + self._gini(
+                    [k for k in range(len(x)) if x[k] < j], y
+                )
                 if g < best:
                     best = g
                     split = (i, j)
         return split
-    
+
     def _gini(self, indices, y):
         total = len(indices)
         if total == 0:
@@ -50,7 +53,7 @@ class DecisionTreeClassifier:
         p_0 = count_0 / total
         p_1 = count_1 / total
         return 1 - p_0**2 - p_1**2
-    
+
     def _build_tree(self, X, y, depth):
         if depth == self.max_depth:
             node = Node(None, None)
@@ -76,6 +79,7 @@ class DecisionTreeClassifier:
             node.right = self._build_tree(X[right], y[right], depth + 1)
             return node
 
+
 # Example usage
 tree = DecisionTreeClassifier(max_depth=3)
 np.random.seed(240)
@@ -87,4 +91,3 @@ X_test = np.array([[0.5, 0.5]])  # Single test instance
 tree.fit(X_train, y_train)
 predictions = tree.predict(X_test)
 print(f"Predicted class label for X_test: {predictions[0]}")
-
